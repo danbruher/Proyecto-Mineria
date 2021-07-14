@@ -1,1 +1,4 @@
 # Proyecto-Mineria
+
+
+asdasddasdasdasd
