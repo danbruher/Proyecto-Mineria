@@ -5,8 +5,8 @@ import io
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-placeholder = st.empty()
-
+st.sidebar.title('Choose your favorite Graph')
+option=st.sidebar.selectbox('select graph',('Simple','Karate', 'GOT'))
 #st.set_page_config(layout="centered")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -60,4 +60,3 @@ for col in DatosMelbourne.select_dtypes(include='object'):
 
 st.dataframe(DatosMelbourne.corr())
 
-placeholder.empty()
