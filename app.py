@@ -5,15 +5,23 @@ import io
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-st.sidebar.title('Choose your favorite Graph')
-option=st.sidebar.selectbox('select graph',('Simple','Karate', 'GOT'))
+st.sidebar.title('Opciones')
+uploaded_file = st.sidebar.file_uploader("Subir archivo CSV", type =['.csv'])
+option=st.sidebar.selectbox('Selecciona Datos',('Melbourne','Hipoteca', 'Archivo subido'))
+if option == 'Melbourne':
+  DatosMelbourne = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/melb_data.csv')
+elif option == 'Hipoteca':
+  DatosMelbourne = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/Hipoteca.csv')
+else:
+  DatosMelbourne = pd.read_csv(uploaded_file)
+
 #st.set_page_config(layout="centered")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.title('El proyecto de mineria')
 
-uploaded_file = st.file_uploader("Subir archivo CSV")
-DatosMelbourne = pd.read_csv(uploaded_file)
+
+
 DatosMelbourne
 
 
