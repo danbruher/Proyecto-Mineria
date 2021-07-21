@@ -9,10 +9,11 @@ import matplotlib.pyplot as plt
 #st.set_page_config(layout="centered")
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
-st.title('EDA')
 
 
+@st.cache
 def eda(DatosMelbourne):
+    st.title('EDA')
     DatosMelbourne
 
 
