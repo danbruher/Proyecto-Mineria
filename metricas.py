@@ -1,4 +1,6 @@
-import streamlit
+import streamlit as st
+import pandas as pd
 
 def metricas(data):
- print("Metricas")
+    st.write(data)
+    print("Metricas")

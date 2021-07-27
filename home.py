@@ -1,31 +1,27 @@
 import streamlit as st
 
 def home():
-    pweb = """<a href='http://andymcdonald.scot' target="_blank">http://andymcdonald.scot</a>"""
-    sm_li = """<a href='https://www.linkedin.com/in/andymcdonaldgeo/' target="_blank"><img src='https://cdn.exclaimer.com/Handbook%20Images/linkedin-icon_32x32.png'></a>"""
-    sm_tw = """<a href='https://twitter.com/geoandymcd' target="_blank"><img src='https://cdn.exclaimer.com/Handbook%20Images/twitter-icon_32x32.png'></a>"""
-    sm_med = """<a href='https://medium.com/@andymcdonaldgeo/' target="_blank"><img src='https://cdn.exclaimer.com/Handbook%20Images/Medium_32.png'></a>"""
-
-    st.title('LAS Data Explorer - Version 0.2.0')
-    st.write('## Welcome to the LAS Data Explorer')
-    st.write('### Created by Andy McDonald')
-    st.write('''LAS Data Explorer is a tool designed using Python and Streamlit to help you view and gain an understanding of the contents of
-    a LAS file.''')
-    st.write('To begin using the app, load your LAS file using the file upload option on the sidebar. Once you have done this, you can navigate to the relevant tools using the Navigation menu.')
+ 
+    st.title('GUI Minería de Datos')
+    st.write('## Interface gráfica de usuario')
+    st.write('### Creado por Daniel Brugada')
+    st.write('''Herramietna desarrollada en Python y Streamlit para visulizar y modificar datasets
+    en formato csv.''')
+    st.write('''Para utilizar la aplicacion, suba su archivo en la barra lateral o utilice alguno de 
+    los archivos incluidos . Una vez echo esto, puede navegar en las distitnas herramintas con el 
+    menu de navegacion.''')
     st.write('\n')
-    st.write('## Sections')
-    st.write('**Header Info:** Information from the LAS file header.')
-    st.write('**Data Information:** Information about the curves contained within the LAS file, including names, statisics and raw data values.')
-    st.write('**Data Visualisation:** Visualisation tools to view las file data on a log plot, crossplot and histogram.')
-    st.write('**Missing Data Visualisation:** Visualisation tools understand data extent and identify areas of missing values.')
-    st.write('**Header Info:** Information from the LAS file header.')
-    st.write('**Header Info:** Information from the LAS file header.')
-    st.write('**Header Info:** Information from the LAS file header.')
-    #st.write('## Get in Touch')
-    #st.write(f'\nIf you want to get in touch, you can find me on Social Media at the links below or visit my website at: {pweb}.', unsafe_allow_html=True)
-    
-   # st.write(f'{sm_li}  {sm_med}  {sm_tw}', unsafe_allow_html=True)
-
-    st.write('## Source Code, Bugs, Feature Requests')
+    st.write('## Secciones')
+    st.write('''**EDA:** Permite tener una idea de la estructura del conjunto de datos, identificar 
+    la variable objetivo y posibles técnicas de modelado.''')
+    st.write('''**PCA:** Para reducir la cantidad de variables de conjuntos de datos, mientras se 
+    conserva la mayor cantidad de información posible.''')
+    st.write('''**Metricas de similitud:** Es una puntuación objetiva que resume la diferencia entre 
+    dos elementos.''')
+    st.write('''**Clustering:** El objetivo es dividir una población heterogénea de elementos en un 
+    número de grupos naturales (regiones o segmentos homogéneos), de acuerdo a sus similitudes.''')
+    st.write('''**Reglas de asociacion:** Consiste en identificar un conjunto de patrones secuenciales 
+    en forma de reglas de tipo: A => B''')
+    st.write('## Codigo fuente, Documentacion')
     githublink = """<a href='https://github.com/danbruher/Proyecto-Mineria' target="_blank">https://github.com/danbruher/Proyecto-Mineria</a>"""
-    st.write(f'\n\nCheck out the GitHub Repo at: {githublink}. If you find any bugs or have suggestions, please open a new issue and I will look into it.', unsafe_allow_html=True)
+    st.write(f'\n\nRepositorio del proyecto: {githublink}. ', unsafe_allow_html=True)

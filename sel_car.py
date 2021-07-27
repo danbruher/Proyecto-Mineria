@@ -7,10 +7,20 @@ import matplotlib.pyplot as plt
 
 
 def sel_car(Datos):
-    st.title('EDA')
+    st.title('Seleccion de caracteristicas')
     st.write(Datos)
 
-    #sns.pairplot(DatosMelbourne)
+
+
+    st.subheader('Tipos de datos')
+    st.dataframe(Datos.dtypes)
+
+
+    st.subheader('Identificación de datos faltantes')
+    st.dataframe(Datos.isnull().sum())
+
+    st.subheader('Evalucaion visual')
+    #sns.pairplot(Datos)
     #st.pyplot()
 
     fig, ax = plt.subplots()
@@ -40,6 +50,8 @@ def sel_car(Datos):
     plt.ylabel('Price')
     st.pyplot()
 
+
+    st.subheader('Identificación de relaciones entre variables')
     Datos.corr()
 
     plt.figure(figsize=(14,7))
@@ -61,5 +73,8 @@ def sel_car(Datos):
 
     print(Correlaciones['Rooms'].sort_values(ascending=False)[:10], '\n')   #Top 10 valores
 
+
+    st.subheader('Elección de variables')
     Datos.drop(['Bedroom2', 'Postcode', 'Lattitude', 'Longtitude'], axis=1)
     st.write(Datos)
+    return Datos
