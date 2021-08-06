@@ -8,38 +8,39 @@ from sklearn.decomposition import PCA
 
 def pca(data):
     
-    st.title('Ana;isis de componentes principales')
-    st.write(data)
-
-    st.subheader('Paso 1: Se hace una estandarización de los datos')
+    st.title('Análisis de componentes principales')
+    
+    st.subheader('Estandarización de los datos')
+    columns_namess = data.columns.values
+    columns_names_listt = list(columns_namess)
+    Valores_a_dropear= st.multiselect("Variables a dropear:", columns_names_listt)
     normalizar = StandardScaler()                       # Se instancia el objeto StandardScaler 
-    MHipoteca = data.drop(['comprar'], axis=1)      # Se quita la variable dependiente "Y"
-    normalizar.fit(MHipoteca)                           # Se calcula la media y desviación para cada dimensión
+    MHipoteca = data.drop(Valores_a_dropear, axis=1)      # Se quita la variable dependiente "Y"
+    
+    normalizar.fit(MHipoteca)
     MNormalizada = normalizar.transform(MHipoteca)      # Se normalizan los datos 
-    st.text(MNormalizada.shape)
-
+    st.text(MNormalizada.shape)                        # Se calcula la media y desviación para cada dimensión
+    
     st.dataframe(pd.DataFrame(MNormalizada, columns=MHipoteca.columns))
 
-    st.subheader('Paso 2 y3 :Se calcula la matriz de covarianzas o correlaciones, y se calculan los     componentes (eigen-vectores) y la varianza (eigen-valores)')
-    Componentes = PCA(n_components=9)              # Se instancia el objeto PCA                          pca=PCA(n_components=None), pca=PCA(.85)
+    st.write('Se calcula la matriz de covarianzas, y se calculan los componentes  y la varianza')
+    Componentes = PCA(n_components=None)              # Se instancia el objeto PCA                          pca=PCA(n_components=None), pca=PCA(.85)
     Componentes.fit(MNormalizada)                  # Se obtiene los componentes
     X_Comp = Componentes.transform(MNormalizada)   # Se convierte los datos con las nuevas dimensiones
     #(pd.DataFrame(X_Comp)
 
     st.write(Componentes.components_)
 
-
     st.subheader('''Paso 4: Se decide el número de componentes principales
     * Se calcula el porcentaje de relevancia, es decir, entre el 75 y 90% de varianza total.
     * Se identifica mediante una gráfica el grupo de componentes con mayor varianza.
     * *Se elige las dimensiones cuya varianza sea mayor a 1.''')
+    numero = st.slider('Número de componetes', 0, 10)
     Varianza = Componentes.explained_variance_ratio_
     st.text('Eigenvalues:')
     st.text(Varianza)
-    st.write('Varianza acumulada:', sum(Varianza[0:5]))   
-    #Con 5 componentes se tiene el 85% de varianza acumulada y con 6 el 91%
-
-
+    st.write('Varianza acumulada:', sum(Varianza[0:numero]))   
+    
     # Se grafica la varianza acumulada en las nuevas dimensiones
     plt.plot(np.cumsum(Componentes.explained_variance_ratio_))
     plt.xlabel('Número de componentes')
@@ -54,17 +55,15 @@ def pca(data):
     valor absoluto, más importante es esa variable en el componente principal.''')
     st.write(pd.DataFrame(abs(Componentes.components_)))
 
-
     CargasComponentes = pd.DataFrame(Componentes.components_, columns=MHipoteca.columns)
     st.write(CargasComponentes)
-
 
     CargasComponentes = pd.DataFrame(abs(Componentes.components_), columns=MHipoteca.columns)
     st.write(CargasComponentes)
 
     columns_names = MHipoteca.columns.values
     columns_names_list = list(columns_names)
-    Valores_a_drop= st.multiselect("Variables a dropear:", columns_names_list)
+    Valores_a_drop= st.multiselect("Variables a dropear del dataset:", columns_names_list)
 
     NuevaMatriz = MHipoteca.drop(Valores_a_drop, axis=1)
     st.dataframe(NuevaMatriz)

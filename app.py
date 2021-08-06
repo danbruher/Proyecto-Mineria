@@ -4,38 +4,43 @@ import pandas as pd
 import io
 import seaborn as sns
 import matplotlib.pyplot as plt
-import home, eda, sel_car, pca, metricas,clustering, reglas
+import home, eda, pca, clustering, clasificacion
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-option=st.sidebar.selectbox('Selecciona Datos',('Hipoteca', 'Melbourne', 'Subir archivo csv'))
-if option == 'Melbourne':
-  Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/melb_data.csv')
-elif option == 'Hipoteca':
-  Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/Hipoteca.csv')
-else:
-  uploaded_file = st.sidebar.file_uploader("Subir archivo CSV", type =['.csv'])
-  Datos = pd.read_csv(uploaded_file)
+def main():
 
-st.sidebar.title('Secciones')
-options = st.sidebar.radio('', 
-    ['Inicio', 'EDA', 'PCA'])
+    option=st.sidebar.selectbox('Selecciona Datos',('Hipoteca', 'Melbourne', 'Cancer','Subir archivo csv'))
+    if option == 'Melbourne':
+        Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/melb_data.csv')
+    elif option == 'Hipoteca':
+        Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/Hipoteca.csv')
+    elif option == 'Cancer':
+        Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/WDBCOriginal.csv')
+    else:
+        uploaded_file = st.sidebar.file_uploader("Subir archivo CSV", type =['.csv'])
+        try:
+            Datos = pd.read_csv(uploaded_file)
+        except ValueError:
+             st.sidebar.error("Suba archivo csv")
 
-if options == 'Inicio':
-    home.home()
-elif options == 'EDA':
-    eda.eda(Datos)
-elif options == '2 Selección de características':
-    sel_car.sel_car(Datos)
-elif options == 'PCA':
-    pca.pca(Datos)
-elif options == 'Métricas Similitud':
-    metricas.metricas(Datos)
-elif options == 'Clustering':
-    clustering.clustering(Datos)
-elif options == 'Reglas Asociación':
-    reglas.reglas(Datos)
+    st.sidebar.title('Secciones')
+    options = st.sidebar.radio('', 
+        ['Inicio', 'EDA', 'PCA', 'Clustering', 'Clasificación'])
+
+    if options == 'Inicio':
+        home.home()
+    elif options == 'EDA':
+        eda.eda(Datos)
+    elif options == 'PCA':
+        pca.pca(Datos)
+    elif options == 'Clustering':
+        clustering.clustering(Datos)
+    elif options == 'Clasificación':
+        clasificacion.clasificacion(Datos)
 
 #st.set_page_config(layout="centered")
 
 
+if __name__ == '__main__':
+	main()
