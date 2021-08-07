@@ -23,15 +23,16 @@ def eda(Datos):
     st.text(Datos.dtypes)
 
 
-    st.subheader('Indentificaion de datos faltantes.')
+    st.subheader('Identificación de datos faltantes.')
     st.write('''Suma de todos los valores nulos en cada variable.''')
     st.text (Datos.isnull().sum())
 
+    st.write('''Tipo de datos y la suma de valores no nulos.''')
     buffer = io.StringIO() 
     Datos.info(buf=buffer)
     s = buffer.getvalue() 
     with open("df_info.txt", "w", encoding="utf-8") as f:
-     f.write(s) 
+     st.text(s) 
 
     st.subheader('Deteccion de valores atipicos')
     st.write('''Se utilizan histogramas que agrupan los números en rangos. La altura de una barra 

@@ -10,7 +10,8 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def main():
 
-    option=st.sidebar.selectbox('Selecciona Datos',('Hipoteca', 'Melbourne', 'Cancer','Subir archivo csv'))
+    st.sidebar.header('Selecciona Datos :open_file_folder:')
+    option=st.sidebar.selectbox('',('Melbourne', 'Hipoteca', 'Cancer','Subir archivo csv'))
     if option == 'Melbourne':
         Datos = pd.read_csv('https://raw.githubusercontent.com/danbruher/Proyecto-Mineria/main/melb_data.csv')
     elif option == 'Hipoteca':
@@ -24,7 +25,8 @@ def main():
         except ValueError:
              st.sidebar.error("Suba archivo csv")
 
-    st.sidebar.title('Secciones')
+    st.sidebar.write("\n \n")
+    st.sidebar.header('Secciones :bookmark_tabs:')
     options = st.sidebar.radio('', 
         ['Inicio', 'EDA', 'PCA', 'Clustering', 'Clasificación'])
 
@@ -37,7 +39,8 @@ def main():
     elif options == 'Clustering':
         clustering.clustering(Datos)
     elif options == 'Clasificación':
-        clasificacion.clasificacion(Datos)
+        clasificacion.clasificacion()
+        st.sidebar.info("Para clasificación se utlizará el dataset Cancer :grey_exclamation:")
 
 #st.set_page_config(layout="centered")
 
