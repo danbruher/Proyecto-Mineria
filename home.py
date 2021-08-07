@@ -18,6 +18,8 @@ def home():
     st.write('''**Clustering:** El objetivo es dividir una población heterogénea de elementos en un 
     número de grupos naturales, de acuerdo a sus similitudes.''')
     st.write('''**Clasificación:** Utiliza regresión logística para predecir valores binarios.''')
-    st.write('## Código fuente')
+    st.write('## Código fuente y App')
     githublink = """<a href='https://github.com/danbruher/Proyecto-Mineria' target="_blank">https://github.com/danbruher/Proyecto-Mineria</a>"""
     st.write(f'\n\nRepositorio del proyecto: {githublink}. ', unsafe_allow_html=True)
+    applink = """<a href='https://mineria-de-datos.herokuapp.com/' target="_blank">https://mineria-de-datos.herokuapp.com/</a>"""
+    st.write(f'\n\nApp: {applink}. ', unsafe_allow_html=True)
