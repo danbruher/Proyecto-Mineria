@@ -33,7 +33,7 @@ def pca(data):
         st.write(Componentes.components_)
 
         st.subheader('''Se decide el número de componentes principales''')
-        numero = st.slider('Número de componetes', 0, 10)
+        numero = st.slider('Número de componentes', 0, 10)
         Varianza = Componentes.explained_variance_ratio_
         st.text('Eigenvalues:')
         st.text(Varianza)

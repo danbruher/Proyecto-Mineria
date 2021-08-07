@@ -45,7 +45,7 @@ def clustering(data):
     st.write(MHipoteca)
   
 
-    st.subheader('''Clustering particional Algoritmo: k-means''')
+    st.subheader('''Clustering particional: Algoritmo k-means''')
     
 
     #Definición de k clusters para K-means

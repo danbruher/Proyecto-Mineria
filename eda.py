@@ -14,7 +14,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def eda(Datos):
     st.title('EDA')
-    st.subheader('Descripcion de la estructura de los datos')
+    st.subheader('Descripción de la estructura de los datos')
     st.dataframe(Datos)
     st.write('''Cantidad de filas y columnas que tiene el conjunto de datos.''')
     st.text(Datos.shape)
@@ -27,14 +27,14 @@ def eda(Datos):
     st.write('''Suma de todos los valores nulos en cada variable.''')
     st.text (Datos.isnull().sum())
 
-    st.write('''Tipo de datos y la suma de valores no nulos.''')
-    buffer = io.StringIO() 
-    Datos.info(buf=buffer)
-    s = buffer.getvalue() 
-    with open("df_info.txt", "w", encoding="utf-8") as f:
-     st.text(s) 
+    #st.write('''Tipo de datos y la suma de valores no nulos.''')
+    #buffer = io.StringIO() 
+    #Datos.info(buf=buffer)
+    #s = buffer.getvalue() 
+    #with open("df_info.txt", "w", encoding="utf-8") as f:
+    # st.text(s) 
 
-    st.subheader('Deteccion de valores atípicos')
+    st.subheader('Detección de valores atípicos')
     st.write('''Se utilizan histogramas que agrupan los números en rangos.''')
     fig, ax = plt.subplots()
     Datos.hist(figsize=(15,15))
@@ -46,7 +46,7 @@ def eda(Datos):
     st.write('''Diagramas para detectar posibles valores atípicos.''')
     columns_names = Datos.columns.values
     columns_names_list = list(columns_names)
-    ValoresAtipicos= st.multiselect("Variables atipicas:", columns_names_list)
+    ValoresAtipicos= st.multiselect("Variables atípicas:", columns_names_list)
     
     
     fig, ax = plt.subplots()
@@ -72,7 +72,7 @@ def eda(Datos):
         st.dataframe(Datos.groupby(col).agg(['mean']))
 
 
-    st.subheader('Identificacion de relaciones entre pares de varialbles')
+    st.subheader('Identificación de relaciones entre pares de varialbles')
     st.write('''Una matriz de correlaciones es útil para analizar la relación entre las variables 
     numéricas. ''')
     st.dataframe(Datos.corr())
