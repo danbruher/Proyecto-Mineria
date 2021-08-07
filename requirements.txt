@@ -5,7 +5,6 @@ pandas
 urllib3
 seaborn
 sklearn
-PIL
 kneed
 importlib
 urllib
