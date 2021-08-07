@@ -17,7 +17,7 @@ def clustering(data):
     columns_names = data.columns.values
     columns_names_list = list(columns_names)
     #'comprar' representa un valor obtenido de un análisis hipotecario preliminar
-    genre = st.selectbox("What's your favorite movie genre",columns_names_list)
+    genre = st.selectbox("Variable de control",columns_names_list)
     st.text(data.groupby(genre).size())
 
 

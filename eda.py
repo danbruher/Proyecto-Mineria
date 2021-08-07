@@ -34,9 +34,8 @@ def eda(Datos):
     with open("df_info.txt", "w", encoding="utf-8") as f:
      st.text(s) 
 
-    st.subheader('Deteccion de valores atipicos')
-    st.write('''Se utilizan histogramas que agrupan los números en rangos. La altura de una barra 
-    muestra cuántos números caen en ese rango.''')
+    st.subheader('Deteccion de valores atípicos')
+    st.write('''Se utilizan histogramas que agrupan los números en rangos.''')
     fig, ax = plt.subplots()
     Datos.hist(figsize=(15,15))
     st.pyplot()
@@ -59,7 +58,8 @@ def eda(Datos):
     try:
         st.dataframe(Datos.describe(include='object'))
     except ValueError:
-        st.error('Sin datos categóricos')
+        st.write("")
+        #st.error('Sin datos categóricos')
 
     for col in Datos.select_dtypes(include='object'):
         if Datos[col].nunique() < 10:
